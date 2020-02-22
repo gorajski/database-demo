@@ -8,6 +8,11 @@ public class Person {
     private String location;
     private Date birthDate;
 
+    //Jdbc requires each POJO it maps to have a no-args constructor
+    //Since we provided an args constructor, Java by will NOT by default create the no-args constructor.
+    public Person() {
+    }
+
     public Person(int id, String name, String location, Date birthDate) {
         this.id = id;
         this.name = name;
@@ -45,5 +50,15 @@ public class Person {
 
     public void setBirthDate(Date birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "\nPerson{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", birthDate=" + birthDate +
+                '}';
     }
 }

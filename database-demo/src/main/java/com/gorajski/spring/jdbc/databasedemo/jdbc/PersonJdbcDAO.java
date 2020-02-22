@@ -17,7 +17,7 @@ public class PersonJdbcDAO {
 
 
     public List<Person> findAll() {
-        jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<>(Person.class));
+        return jdbcTemplate.query("select * from person", new BeanPropertyRowMapper<>(Person.class));
         //Spring has a default mapper available to let us map incoming data into a POJO when the SQL properties
         //match the POJO fields.
 
