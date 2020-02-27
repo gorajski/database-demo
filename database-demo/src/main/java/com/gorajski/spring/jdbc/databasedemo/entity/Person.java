@@ -1,16 +1,31 @@
 package com.gorajski.spring.jdbc.databasedemo.entity;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+//@Table(name = "person")  This is unneeded since the table name matches the class name.
 public class Person {
+
+    @Id //This IS needed since it indicates this property as a primary key
+    @GeneratedValue //generates id based on database id generation mechanism
     private int id;
+    //@Column(name = "name")  This is unneeded since the field name matches the property name.
     private String name;
+
     private String location;
+
     private Date birthDate;
 
-    //Jdbc requires each POJO it maps to have a no-args constructor
-    //Since we provided an args constructor, Java by will NOT by default create the no-args constructor.
+    // Like JDBC, JPA as well requires a no-args constructor.
     public Person() {
+    }
+
+    // Using JPA's @GeneratedValue also requires a constructor that takes all args minus the id arg, since it is auto-generated
+    public Person(String name, String location, Date birthDate) {
+        this.name = name;
+        this.location = location;
+        this.birthDate = birthDate;
     }
 
     public Person(int id, String name, String location, Date birthDate) {
