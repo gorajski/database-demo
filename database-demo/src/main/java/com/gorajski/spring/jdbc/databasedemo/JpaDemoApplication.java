@@ -28,17 +28,17 @@ public class JpaDemoApplication implements CommandLineRunner {		//CommandLineRun
 	@Override
 	public void run(String... args) throws Exception {
 		logger.info("User ID 10001 -> {}", repository.findById(10001));
-//		logger.info("All users -> {}", repository.findAll());
-//		logger.info("Deleting ID 10002 -> No of Rows Deleted - {}", repository.deleteById(10002));
 
 		//Since this record needs to be generated, JPA will create an ID for this user and therefore one does not need to be passed in.
-		logger.info("Inserting 10004 - {}", repository.insert(new Person("Tara", "Berlin", new Date())));
+		logger.info("Inserting - {}", repository.insert(new Person("Tara", "Berlin", new Date())));
+		logger.info("Inserting - {}", repository.insert(new Person("Tara", "Kyoto", new Date())));
 
 		logger.info("Update 10003 ->  {}", repository.update(new Person(10003, "Pieter", "Utrecht", new Date())));
 
 		repository.deleteById(10002);
+		logger.info("All users -> {}", repository.findAll());
+		logger.info("All users named Tara -> {}", repository.findTara());
 
-//		logger.info("Update Pieter to Piaul -> {}", repository.updateByName( "Pieter", new Person(10003, "Piaul", "Utrecht", new Date())));
 
 	}
 }

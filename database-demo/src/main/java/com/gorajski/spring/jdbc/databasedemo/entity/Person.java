@@ -4,6 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
+@NamedQuery(name="find_all_persons", query="select p from Person p")
+@NamedQuery(name="find_all_taras", query = "select p from Person p where p.name = 'Tara'")
 //@Table(name = "person")  This is unneeded since the table name matches the class name.
 public class Person {
 
