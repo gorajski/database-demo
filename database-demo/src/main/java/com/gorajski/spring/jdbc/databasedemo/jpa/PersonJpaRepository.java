@@ -18,4 +18,19 @@ public class PersonJpaRepository {
     public Person findById(int id) {
         return entityManager.find(Person.class, id);
     }
+
+    public Person update(Person person) {
+        return entityManager.merge(person); //If there is an ID set in the person arg, the entityManager will try to
+                                            //locate this person in the database and update it.  If it can't find this
+                                            //ID, then it will insert it.
+    }
+
+    public Person insert(Person person) {
+        return entityManager.merge(person); //Same as above^^^
+    }
+
+    public void deleteById(int id) {
+        Person person = findById(id);
+        entityManager.remove(person);
+    }
 }
